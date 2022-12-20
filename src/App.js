@@ -5,6 +5,8 @@ import { useState } from "react"
 
 function App() {
 
+  const [showAddTask, setshowAddTask] = useState(false)
+
   const [tasks, setTasks] = useState(
         [
             {
@@ -56,8 +58,12 @@ function App() {
 
   return (
     <div className="container">
-      <Header title='Bruh Moment' />
-      <AddTask onAdd={addTask}/>
+      <Header 
+      title='Bruh Moment' 
+      onAdd={() => setshowAddTask(!showAddTask)}
+      showAdd={showAddTask}
+      />
+      {showAddTask && <AddTask onAdd={addTask}/>}
       {tasks.length > 0 ?
         <Tasks 
         tasks={tasks} 
